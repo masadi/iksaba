@@ -7,17 +7,12 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Activity</a></li>
                                 <li class="nav-item"><a class="nav-link active show" href="#settings" data-toggle="tab">Settings</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#change-password" data-toggle="tab">Change Password</a></li>
                             </ul>
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content">
-                                <!-- Activity Tab -->
-                                <div class="tab-pane" id="activity">
-                                    <h3 class="text-center">Display User Activity</h3>
-                                </div>
                                 <!-- Setting Tab -->
                                 <div class="tab-pane active show" id="settings">
                                     <form @click.prevent="updateInfo" class="form-horizontal">

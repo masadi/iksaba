@@ -2,18 +2,25 @@
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <li class="nav-item">
         <router-link to="/dashboard" class="nav-link">
-          <i class="nav-icon fas fa-tachometer-alt blue"></i>
+          <i class="nav-icon fas fa-tachometer-alt white"></i>
           <p>
             Dashboard
           </p>
         </router-link>
       </li>
-
       <li class="nav-item">
-        <router-link to="/products" class="nav-link">
-          <i class="nav-icon fas fa-list orange"></i>
+        <router-link to="/santri" class="nav-link">
+          <i class="nav-icon fas fa-user-friends green"></i>
           <p>
-            Product
+            Data Santri
+          </p>
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/alumni" class="nav-link">
+          <i class="nav-icon fas fa-user-graduate orange"></i>
+          <p>
+            Data Alumni
           </p>
         </router-link>
       </li>
@@ -30,7 +37,7 @@
       
 
       @can('isAdmin')
-      <li class="nav-item has-treeview">
+      <li class="nav-item has-treeview" style="display: none;">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-cog green"></i>
           <p>
