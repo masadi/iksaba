@@ -8,8 +8,10 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>{{ config('app.name', 'Laravel') }}</title>
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="http://mubakid.or.id/wp-content/uploads/2019/01/cropped-512-1-32x32.png" sizes="32x32" />
+  <link rel="icon" href="http://mubakid.or.id/wp-content/uploads/2019/01/cropped-512-1-192x192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="http://mubakid.or.id/wp-content/uploads/2019/01/cropped-512-1-180x180.png" />
+  <meta name="msapplication-TileImage" content="http://mubakid.or.id/wp-content/uploads/2019/01/cropped-512-1-270x270.png" />
   <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 <body class="hold-transition sidebar-mini">
