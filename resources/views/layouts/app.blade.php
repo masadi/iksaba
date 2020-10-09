@@ -15,7 +15,10 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link rel="icon" href="http://mubakid.or.id/wp-content/uploads/2019/01/cropped-512-1-32x32.png" sizes="32x32" />
+    <link rel="icon" href="http://mubakid.or.id/wp-content/uploads/2019/01/cropped-512-1-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="http://mubakid.or.id/wp-content/uploads/2019/01/cropped-512-1-180x180.png" />
+    <meta name="msapplication-TileImage" content="http://mubakid.or.id/wp-content/uploads/2019/01/cropped-512-1-270x270.png" />
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
