@@ -7,7 +7,12 @@ export default class Gate{
     isAdmin(){
         return this.user.type === 'admin';
     }
-
+    isKorcam(){
+        return this.user.type === 'korcam';
+    }
+    isKordes(){
+        return this.user.type === 'kordes';
+    }
     isUser(){
         return this.user.type === 'user';
     }
