@@ -16,6 +16,7 @@ class CreateAsramaTable extends Migration
         Schema::create('asrama', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 100);
+            $table->decimal('is_putra', 1, 0);
             $table->timestamps();
         });
     }

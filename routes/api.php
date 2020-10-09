@@ -22,7 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Log::debug('User:' . serialize($request->user()));
     return $request->user();
 });
-
+Route::get('last-santri', 'SantriController@index');
 
 Route::get('profile', 'API\V1\ProfileController@profile');
 Route::put('profile', 'API\V1\ProfileController@updateProfile');
