@@ -13,12 +13,18 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->where('email', 'masadi.com@gmail.com')->delete();
+        DB::table('users')->whereIn('email', ['masadi.com@gmail.com', 'ibnuadkarim@gmail.com'])->delete();
 
         DB::table('users')->insert([
             'name' => 'Achmadi',
             'email' => 'masadi.com@gmail.com',
             'password' => bcrypt('himalaya'),
+            'type' => 'admin',
+        ]);
+        DB::table('users')->insert([
+            'name' => 'SAHRONI',
+            'email' => 'ibnuadkarim@gmail.com',
+            'password' => bcrypt('iksaba0k'),
             'type' => 'admin',
         ]);
     }
