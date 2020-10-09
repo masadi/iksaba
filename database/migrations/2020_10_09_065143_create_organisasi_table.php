@@ -17,6 +17,10 @@ class CreateOrganisasiTable extends Migration
             $table->id();
             $table->string('nama');
             $table->foreignId('tingkat_organisasi_id')->constrained('tingkat_organisasi')->onDelete('cascade');
+            $table->foreignId('desa_id')->constrained('desa')->onDelete('cascade')->nullable();
+            $table->foreignId('kecamatan_id')->constrained('kecamatan')->onDelete('cascade')->nullable();
+            $table->foreignId('kabupaten_id')->constrained('kabupaten')->onDelete('cascade')->nullable();
+            $table->foreignId('provinsi_id')->constrained('provinsi')->onDelete('cascade')->nullable();
             $table->timestamps();
         });
     }
