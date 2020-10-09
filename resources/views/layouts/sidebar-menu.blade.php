@@ -78,7 +78,7 @@
       @endcan
       
       
-
+      @if(Auth::user())
       <li class="nav-item">
         <a href="#" class="nav-link" onclick="event.preventDefault();
           document.getElementById('logout-form').submit();">
@@ -91,5 +91,6 @@
           @csrf
         </form>
       </li>
+      @endif
     </ul>
   </nav>
