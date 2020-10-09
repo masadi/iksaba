@@ -81,7 +81,7 @@
                     @endauth
                 </div>
             @endif
-
+            <div style="clear: both;"></div>
             <div class="content">
                 
                 <div class="title m-b-md">
