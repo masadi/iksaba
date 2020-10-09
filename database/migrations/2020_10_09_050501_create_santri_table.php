@@ -33,6 +33,7 @@ class CreateSantriTable extends Migration
             $table->decimal('tahun_masuk', 4, 0);
             $table->decimal('tahun_keluar', 4, 0)->nullable();
             $table->timestamps();
+            $table->primary('santri_id');
             $table->foreign('tahun_masuk')->references('tahun_id')->on('tahun')->onDelete('cascade');
             $table->foreign('tahun_keluar')->references('tahun_id')->on('tahun')->onDelete('cascade');
         });
