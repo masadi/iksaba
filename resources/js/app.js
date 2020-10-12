@@ -99,7 +99,12 @@ Vue.filter('yesno', value => (value ? '<i class="fas fa-check green"></i>' : '<i
 // end Filter
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 const app = new Vue({
     el: '#app',
     router

@@ -23,6 +23,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('last-santri', 'SantriController@index');
+Route::get('santri', 'SantriController@get_santri');
+Route::post('santri', 'SantriController@store');
+Route::get('alumni', 'SantriController@get_alumni');
+Route::get('get-provinsi', 'ReferensiController@get_provinsi');
+Route::get('get-kabupaten', 'ReferensiController@get_kabupaten');
+Route::get('get-kecamatan', 'ReferensiController@get_kecamatan');
+Route::get('get-desa', 'ReferensiController@get_desa');
+Route::get('get-pekerjaan', 'ReferensiController@get_pekerjaan');
+Route::get('get-pendidikan', 'ReferensiController@get_pendidikan');
+Route::get('get-asrama', 'ReferensiController@get_asrama');
 
 Route::get('profile', 'API\V1\ProfileController@profile');
 Route::put('profile', 'API\V1\ProfileController@updateProfile');
