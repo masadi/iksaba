@@ -20,38 +20,6 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <app-datatable :items="items" :fields="fields" :meta="meta" :title="'Hapus Data Santri'" @per_page="handlePerPage" @pagination="handlePagination" @search="handleSearch" @sort="handleSort" />
-                        <!--table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Nama</th>
-                      <th>Alamat</th>
-                      <th>Kabupaten</th>
-                      <th>Tahun Masuk</th>
-                      <th>Tahun Keluar</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                     <tr v-for="product in products.data" :key="product.id">
-
-                      <td>{{product.id}}</td>
-                      <td>{{product.name}}</td>
-                      <td>{{product.description | truncate(30, '...')}}</td>
-                      <td>{{product.category.name}}</td>
-                      <td>{{product.price}}</td>
-                      <td>
-
-                        <a href="#" @click="editModal(product)">
-                            <i class="fa fa-edit blue"></i>
-                        </a>
-                        /
-                        <a href="#" @click="deleteProduct(product.id)">
-                            <i class="fa fa-trash red"></i>
-                        </a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table-->
                     </div>
                     <!-- /.card-body -->
                     <!--div class="card-footer">
@@ -177,21 +145,6 @@
                                 <input v-model="form.tahun_masuk" type="text" name="tahun_masuk" class="form-control" :class="{ 'is-invalid': form.errors.has('tahun_masuk') }" placeholder="yyyy">
                                 <has-error :form="form" field="tahun_masuk"></has-error>
                             </div>
-                            <div class="form-group">
-                                <label>Tahun Keluar</label>
-                                <input v-model="form.tahun_keluar" type="text" name="tahun_keluar" class="form-control" :class="{ 'is-invalid': form.errors.has('tahun_keluar') }" placeholder="yyyy">
-                                <has-error :form="form" field="tahun_keluar"></has-error>
-                            </div>
-                            <!--div class="form-group">
-                            <label>Tags</label>
-                            <vue-tags-input
-                              v-model="form.tag"
-                              :tags="form.tags"
-                              :autocomplete-items="filteredItems"
-                              @tags-changed="newTags => form.tags = newTags"
-                            />
-                            <has-error :form="form" field="tags"></has-error>
-                        </div-->
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -235,11 +188,6 @@ export default {
                 {
                     key: 'tahun_masuk',
                     'label': 'Tahun Masuk',
-                    sortable: true
-                },
-                {
-                    key: 'tahun_keluar',
-                    'label': 'Tahun Keluar',
                     sortable: true
                 },
                 {
@@ -290,7 +238,6 @@ export default {
                 pendidikan_id: '',
                 asrama_id: '',
                 tahun_masuk: '',
-                tahun_keluar: '',
             }),
             //categories: [],
             //tag:  '',
@@ -391,7 +338,7 @@ export default {
 
             this.form.post('api/santri')
                 .then((data) => {
-                    if (data.data.success) {
+                    if (data.data.status === 'success') {
                         $('#addNew').modal('hide');
 
                         Toast.fire({
@@ -410,8 +357,8 @@ export default {
                         this.$Progress.failed();
                     }
                 })
-                .catch(() => {
-
+                .catch((e) => {
+                    console.log(e)
                     Toast.fire({
                         icon: 'error',
                         title: 'Some error occured! Please try again'

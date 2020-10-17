@@ -16,7 +16,7 @@ class CreateTahunTable extends Migration
         Schema::create('tahun', function (Blueprint $table) {
             $table->decimal('tahun_id', 4, 0);
             $table->string('nama', 100);
-			$table->decimal('periode_aktif', 1, 0);
+			$table->decimal('periode_aktif', 1, 0)->default(0);
 			$table->timestamps();
 			$table->primary('tahun_id');
         });

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Santri;
+use App\Tahun;
+use Validator;
 class SantriController extends Controller
 {
     public function index(){
@@ -30,7 +32,21 @@ class SantriController extends Controller
     }
     public function get_santri(Request $request)
     {
-        $all_data = Santri::orderBy(request()->sortby, request()->sortbydesc)->whereNull('tahun_keluar')
+        $all_data = Santri::with(['provinsi', 'kabupaten', 'kecamatan', 'desa', 'pekerjaan', 'asrama'])->orderBy(request()->sortby, request()->sortbydesc)->whereNull('tahun_keluar')
+            ->when(request()->q, function($berita) {
+                $all_data = $all_data->where('nama', 'LIKE', '%' . request()->q . '%')
+                ->orWhere('alamat', 'LIKE', '%' . request()->q . '%')
+                ->orWhereIn('kabupaten_id', function($query){
+                    $query->select('id')->from('kabupaten')->where('nama', 'LIKE', '%' . request()->q . '%');
+                })
+                ->orWhere('tahun_masuk', 'LIKE', '%' . request()->q . '%')
+                ->orWhere('tahun_keluar', 'LIKE', '%' . request()->q . '%');
+        })->paginate(request()->per_page); //KEMUDIAN LOAD PAGINATIONNYA BERDASARKAN LOAD PER_PAGE YANG DIINGINKAN OLEH USER
+        return response()->json(['status' => 'success', 'data' => $all_data]);
+    }
+    public function get_alumni(Request $request)
+    {
+        $all_data = Santri::with(['provinsi', 'kabupaten', 'kecamatan', 'desa', 'pekerjaan', 'asrama'])->orderBy(request()->sortby, request()->sortbydesc)->whereNotNull('tahun_keluar')
             ->when(request()->q, function($berita) {
                 $all_data = $all_data->where('nama', 'LIKE', '%' . request()->q . '%')
                 ->orWhere('alamat', 'LIKE', '%' . request()->q . '%')
@@ -44,6 +60,51 @@ class SantriController extends Controller
     }
     public function store(Request $request)
     {
+        $messages = [
+            'nama.required' => 'Nama lengkap harus di isi',
+            'nik.required' => 'NIK harus di isi',
+            'nik.unique' => 'NIK sudah terdaftar',
+            'tempat_lahir.required' => 'Tempat Lahir harus di isi',
+            'tanggal_lahir.required' => 'Tanggal Lahir harus di isi',
+            'jenis_kelamin.required' => 'Jenis Kelamin harus di isi',
+            'alamat.required' => 'Alamat harus di isi',
+            'provinsi_id.required' => 'Provinsi tidak boleh kosong',
+            'kabupaten_id.required' => 'Kabupaten/Kota tidak boleh kosong',
+            'kecamatan_id.required' => 'Kecamatan tidak boleh kosong',
+            'desa_id.required' => 'Desa/Kelurahan tidak boleh kosong',
+            'pekerjaan_id.required' => 'Pekerjaan tidak boleh kosong',
+            'asrama_id.required' => 'Asrama tidak boleh kosong',
+            'tahun_masuk.required' => 'Tahun Masuk tidak boleh kosong',
+		];
+		$validator = Validator::make(request()->all(), [
+            'nama' => 'required',
+            'nik' => 'required|unique:santri',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'provinsi_id' => 'required',
+            'kabupaten_id' => 'required',
+            'kecamatan_id' => 'required',
+            'desa_id' => 'required',
+            'pekerjaan_id' => 'required',
+            'asrama_id' => 'required',
+            'tahun_masuk' => 'required',
+		 ],
+		$messages
+        )->validate();
+        Tahun::updateOrCreate(
+            ['tahun_id' => $request->tahun_masuk],
+            ['nama' => 'Tahun '.$request->tahun_masuk]
+        );
+        if($request->tahun_keluar){
+            Tahun::updateOrCreate(
+                ['tahun_id' => $request->tahun_keluar],
+                ['nama' => 'Tahun '.$request->tahun_keluar]
+            ); 
+        }
+        $data = Santri::create($request->all());
+        return response()->json(['status' => 'success', 'data' => $data, 'message' => 'Data santri berhasil disimpan']);
         dd($request->all());
         $user = User::find($request->user_id);
         if(!$user){
