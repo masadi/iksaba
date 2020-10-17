@@ -9,7 +9,7 @@ use Validator;
 class SantriController extends Controller
 {
     public function index(){
-        $data = Santri::limit(10)->orderBy('created_at', 'DESC')->get();
+        $data = Santri::with(['provinsi', 'kabupaten', 'kecamatan', 'desa', 'pekerjaan', 'asrama'])->limit(10)->orderBy('created_at', 'DESC')->get();
         $counting = [
             'santri_putra' => Santri::where(function($query){
                 $query->where('jenis_kelamin', 'L');
