@@ -16,7 +16,7 @@ class SantriController extends Controller
                 $query->whereNull('tahun_keluar');
             })->count(),
             'santri_putri' => Santri::where(function($query){
-                $query->where('jenis_kelamin', 'L');
+                $query->where('jenis_kelamin', 'P');
                 $query->whereNull('tahun_keluar');
             })->count(),
             'alumni_putra' => Santri::where(function($query){
@@ -24,7 +24,7 @@ class SantriController extends Controller
                 $query->whereNotNull('tahun_keluar');
             })->count(),
             'alumni_putri' => Santri::where(function($query){
-                $query->where('jenis_kelamin', 'L');
+                $query->where('jenis_kelamin', 'P');
                 $query->whereNotNull('tahun_keluar');
             })->count(),
         ];
