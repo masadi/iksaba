@@ -307,7 +307,7 @@ export default {
 
             this.$Progress.finish();
         },
-        loadProducts(){
+        loadPostsData(){
 
           // if(this.$gate.isAdmin()){
             axios.get("api/product").then(({ data }) => (this.products = data.data));
@@ -399,7 +399,7 @@ export default {
                             title: data.data.message
                         });
                         this.$Progress.finish();
-                        this.loadProducts();
+                        this.loadPostsData();
 
                     } else {
                         Toast.fire({
@@ -432,7 +432,7 @@ export default {
                 this.$Progress.finish();
                     //  Fire.$emit('AfterCreate');
 
-                this.loadProducts();
+                this.loadPostsData();
             })
             .catch(() => {
                 this.$Progress.fail();
@@ -458,7 +458,7 @@ export default {
                                     'success'
                                     );
                                 // Fire.$emit('AfterCreate');
-                                this.loadProducts();
+                                this.loadPostsData();
                             }).catch((data)=> {
                                 Swal.fire("Failed!", data.message, "warning");
                             });
