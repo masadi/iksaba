@@ -12,7 +12,7 @@
   <link rel="icon" href="http://mubakid.or.id/wp-content/uploads/2019/01/cropped-512-1-192x192.png" sizes="192x192" />
   <link rel="apple-touch-icon" href="http://mubakid.or.id/wp-content/uploads/2019/01/cropped-512-1-180x180.png" />
   <meta name="msapplication-TileImage" content="http://mubakid.or.id/wp-content/uploads/2019/01/cropped-512-1-270x270.png" />
-  <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+  <link rel="stylesheet" href="{{ asset(mix('/css/app.css')) }}">
   <style>
     .content-wrapper{
       background: white;
@@ -79,6 +79,6 @@
     window.user = @json(auth()->user())
 </script>
 @endauth
-<script src="{{ mix('/js/app.js') }}"></script>
+<script src="{{ asset(mix('/js/app.js')) }}"></script>
 </body>
 </html>
